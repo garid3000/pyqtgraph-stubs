@@ -1,0 +1,19 @@
+from ..Qt import QtWidgets
+from .GraphicsItem import GraphicsItem
+
+__all__ = ['GraphicsWidget']
+
+class GraphicsWidget(GraphicsItem, QtWidgets.QGraphicsWidget):
+    def __init__(self, *args, **kwargs) -> None:
+        """
+        **Bases:** :class:`GraphicsItem <pyqtgraph.GraphicsItem>`, :class:`QtWidgets.QGraphicsWidget`
+        
+        Extends QGraphicsWidget with several helpful methods and workarounds for PyQt bugs. 
+        Most of the extra functionality is inherited from :class:`GraphicsItem <pyqtgraph.GraphicsItem>`.
+        """
+    def setFixedHeight(self, h) -> None: ...
+    def setFixedWidth(self, h) -> None: ...
+    def height(self): ...
+    def width(self): ...
+    def boundingRect(self): ...
+    def shape(self): ...
