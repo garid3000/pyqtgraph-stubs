@@ -88,7 +88,7 @@ class GLGraphicsItem(QtCore.QObject):
     def viewTransform(self):
         """Return the transform mapping this item's local coordinate system to the 
         view coordinate system."""
-    def translate(self, dx, dy, dz, local: bool = False) -> None:
+    def translate(self, dx:float, dy:float, dz:float, local: bool = False) -> None:
         """
         Translate the object by (*dx*, *dy*, *dz*) in its parent's coordinate system.
         If *local* is True, then translation takes place in local coordinates.

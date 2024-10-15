@@ -228,7 +228,7 @@ class ImageView(QtWidgets.QWidget):
         """
     def getView(self) -> ViewBox:
         """Return the ViewBox (or other compatible object) which displays the ImageItem"""
-    def getImageItem(self):
+    def getImageItem(self) -> ImageItem:
         """Return the ImageItem for this ImageView."""
     def getRoiPlot(self):
         """Return the ROI PlotWidget for this ImageView"""

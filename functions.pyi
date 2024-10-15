@@ -1,5 +1,7 @@
 # from .Qt import QtCore, QtGui
 from .Qt import  QtCore, QtGui
+import numpy as np
+from numpy.typing import NDArray
 
 
 from _typeshed import Incomplete
@@ -227,7 +229,7 @@ def eq(a, b):
 def affineSliceCoords(shape, origin, vectors, axes):
     """Return the array of coordinates used to sample data arrays in affineSlice().
     """
-def affineSlice(data, shape, origin, vectors, axes, order: int = 1, returnCoords: bool = False, **kargs):
+def affineSlice(data: NDArray[np.uint8, np.int64, np.float64], shape: tuple[int | float, ...] | list[int | float], origin: tuple[int |float, ...] | list[int |float], vectors: tuple[tuple[int | float, ...], ...], axes:tuple[int, ...] | list[int], order: int = 1, returnCoords: bool = False, **kargs):
     """
     Take a slice of any orientation through an array. This is useful for extracting sections of multi-dimensional arrays
     such as MRI images for viewing as 1D or 2D data.
