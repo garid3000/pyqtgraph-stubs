@@ -9,7 +9,7 @@ class GLGraphicsItem(QtCore.QObject):
     def __init__(self, parentItem: GLGraphicsItem = None) -> None: ...
     def setParentItem(self, item) -> None:
         """Set this item's parent in the scenegraph hierarchy."""
-    def setGLOptions(self, opts) -> None:
+    def setGLOptions(self, opts: str) -> None:
         """
         Set the OpenGL state options to use immediately before drawing this item.
         (Note that subclasses must call setupGLState before painting for this to work)

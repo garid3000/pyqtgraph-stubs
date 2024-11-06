@@ -1,3 +1,4 @@
+import numpy as np
 from OpenGL.GL import *
 from ..GLGraphicsItem import GLGraphicsItem
 from _typeshed import Incomplete
@@ -12,7 +13,7 @@ class GLTextItem(GLGraphicsItem):
     font: Incomplete
     def __init__(self, parentItem: Incomplete | None = None, **kwds) -> None:
         """All keyword arguments are passed to setData()"""
-    def setData(self, **kwds) -> None:
+    def setData(self, **kwds: np.ndarray[tuple[int], np.dtype[np.float64]] | np.ndarray[tuple[int, int], np.dtype[np.float64]] | list[float | int] | str) -> None: # must add font type later
         """
         Update the data displayed by this item. All arguments are optional;
         for example it is allowed to update text while leaving colors unchanged, etc.

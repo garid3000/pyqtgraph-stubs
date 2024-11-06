@@ -2,6 +2,7 @@ from OpenGL.GL import *
 from .. import Vector as Vector, getConfigOption as getConfigOption
 from ..Qt import QtCore as QtCore, QtGui as QtGui, QtWidgets as QtWidgets
 from _typeshed import Incomplete
+from .GLGraphicsItem import GLGraphicsItem
 
 class GLViewMixin:
     opts: Incomplete
@@ -25,8 +26,8 @@ class GLViewMixin:
         """
         Initialize the widget state or reset the current state to the original state.
         """
-    def addItem(self, item) -> None: ...
-    def removeItem(self, item) -> None:
+    def addItem(self, item: GLGraphicsItem) -> None: ...
+    def removeItem(self, item: GLGraphicsItem) -> None:  # this might be wrong
         """
         Remove the item from the scene.
         """
