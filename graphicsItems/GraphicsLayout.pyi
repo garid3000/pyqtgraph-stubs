@@ -2,16 +2,16 @@ from .GraphicsWidget import GraphicsWidget
 from _typeshed import Incomplete
 from .ViewBox import ViewBox
 from ..Qt import QtWidgets, QtGui
+from .PlotItem import PlotItem
 
-
-
-__all__ = ['GraphicsLayout']
+__all__ = ["GraphicsLayout"]
 
 class GraphicsLayout(GraphicsWidget):
     """
     Used for laying out GraphicsWidgets in a grid.
     This is usually created automatically as part of a :class:`GraphicsLayoutWidget <pyqtgraph.GraphicsLayoutWidget>`.
     """
+
     border: Incomplete
     layout: Incomplete
     items: Incomplete
@@ -19,7 +19,9 @@ class GraphicsLayout(GraphicsWidget):
     itemBorders: Incomplete
     currentRow: int
     currentCol: int
-    def __init__(self, parent: Incomplete | None = None, border: Incomplete | None = None) -> None: ...
+    def __init__(
+        self, parent: Incomplete | None = None, border: Incomplete | None = None
+    ) -> None: ...
     def setBorder(self, *args, **kwds) -> None:
         """
         Set the pen used to draw border between cells.
@@ -33,19 +35,41 @@ class GraphicsLayout(GraphicsWidget):
         (generally only for internal use--called by addItem)"""
     def nextCol(self, *args, **kargs):
         """Alias of nextColumn"""
-    def addPlot(self, row: Incomplete | None = None, col: Incomplete | None = None, rowspan: int = 1, colspan: int = 1, **kargs):
+    def addPlot(
+        self,
+        row: int | None = None,
+        col: int | None = None,
+        rowspan: int = 1,
+        colspan: int = 1,
+        **kargs: str | dict[str, tuple[str, ...]] | ViewBox | None, # this is not full
+    ) -> PlotItem:
         """
         Create a PlotItem and place it in the next available cell (or in the cell specified)
         All extra keyword arguments are passed to :func:`PlotItem.__init__ <pyqtgraph.PlotItem.__init__>`
         Returns the created item.
         """
-    def addViewBox(self, row: int | None = None, col: int | None = None, rowspan: int = 1, colspan: int = 1, **kargs: QtWidgets.QGraphicsWidget | None | QtGui.QPen | float | bool | str ) -> ViewBox:
+    def addViewBox(
+        self,
+        row: int | None = None,
+        col: int | None = None,
+        rowspan: int = 1,
+        colspan: int = 1,
+        **kargs: QtWidgets.QGraphicsWidget | None | QtGui.QPen | float | bool | str,
+    ) -> ViewBox:
         """
         Create a ViewBox and place it in the next available cell (or in the cell specified)
         All extra keyword arguments are passed to :func:`ViewBox.__init__ <pyqtgraph.ViewBox.__init__>`
         Returns the created item.
         """
-    def addLabel(self, text: str = ' ', row: Incomplete | None = None, col: Incomplete | None = None, rowspan: int = 1, colspan: int = 1, **kargs):
+    def addLabel(
+        self,
+        text: str = " ",
+        row: Incomplete | None = None,
+        col: Incomplete | None = None,
+        rowspan: int = 1,
+        colspan: int = 1,
+        **kargs,
+    ):
         """
         Create a LabelItem with *text* and place it in the next available cell (or in the cell specified)
         All extra keyword arguments are passed to :func:`LabelItem.__init__ <pyqtgraph.LabelItem.__init__>`
@@ -53,13 +77,27 @@ class GraphicsLayout(GraphicsWidget):
 
         To create a vertical label, use *angle* = -90.
         """
-    def addLayout(self, row: Incomplete | None = None, col: Incomplete | None = None, rowspan: int = 1, colspan: int = 1, **kargs):
+    def addLayout(
+        self,
+        row: Incomplete | None = None,
+        col: Incomplete | None = None,
+        rowspan: int = 1,
+        colspan: int = 1,
+        **kargs,
+    ):
         """
         Create an empty GraphicsLayout and place it in the next available cell (or in the cell specified)
         All extra keyword arguments are passed to :func:`GraphicsLayout.__init__ <pyqtgraph.GraphicsLayout.__init__>`
         Returns the created item.
         """
-    def addItem(self, item, row: Incomplete | None = None, col: Incomplete | None = None, rowspan: int = 1, colspan: int = 1) -> None:
+    def addItem(
+        self,
+        item,
+        row: int | None = None,
+        col: int | None = None,
+        rowspan: int = 1,
+        colspan: int = 1,
+    ) -> None:
         """
         Add an item to the layout and place it in the next available cell (or in the cell specified).
         The item must be an instance of a QGraphicsWidget subclass.
@@ -88,7 +126,6 @@ class GraphicsLayout(GraphicsWidget):
     def removeItem(self, item) -> None:
         """Remove *item* from the layout."""
     def clear(self) -> None:
-        """Remove all items from the layout and set the current row and column to 0
-        """
+        """Remove all items from the layout and set the current row and column to 0"""
     def setContentsMargins(self, *args) -> None: ...
     def setSpacing(self, *args) -> None: ...

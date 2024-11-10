@@ -1,7 +1,8 @@
 from .GraphicsObject import GraphicsObject
 from _typeshed import Incomplete
+import numpy as np
 
-__all__ = ['ScatterPlotItem', 'SpotItem']
+__all__ = ["ScatterPlotItem", "SpotItem"]
 
 class SymbolAtlas:
     """
@@ -52,6 +53,7 @@ class ScatterPlotItem(GraphicsObject):
     ============================  ===============================================
 
     """
+
     sigClicked: Incomplete
     sigHovered: Incomplete
     sigPlotChanged: Incomplete
@@ -64,7 +66,17 @@ class ScatterPlotItem(GraphicsObject):
         """
         Accepts the same arguments as setData()
         """
-    def setData(self, *args, **kargs) -> None:
+    def setData(
+        self,
+        *args: dict[str, tuple[float, float] | str]
+        | list[float]
+        | np.ndarray[tuple[int], np.dtype[np.float32]],
+        **kargs: list[list[float]]
+        | np.ndarray[tuple[int, int], np.dtype[np.float32]]
+        | bool
+        | str
+        | list[str],
+    ) -> None:
         """
         **Ordered Arguments:**
 
@@ -82,10 +94,10 @@ class ScatterPlotItem(GraphicsObject):
                                Otherwise, size is in scene coordinates and the spots scale with the view. To ensure
                                effective caching, QPen and QBrush objects should be reused as much as possible.
                                Default is True
-        *symbol*               can be one (or a list) of symbols. For a list of supported symbols, see 
+        *symbol*               can be one (or a list) of symbols. For a list of supported symbols, see
                                :func:`~ScatterPlotItem.setSymbol`. QPainterPath is also supported to specify custom symbol
                                shapes. To properly obey the position and size, custom symbols should be centered at (0,0) and
-                               width and height of 1.0. Note that it is also possible to 'install' custom shapes by setting 
+                               width and height of 1.0. Note that it is also possible to 'install' custom shapes by setting
                                ScatterPlotItem.Symbols[key] = shape.
         *pen*                  The pen (or list of pens) to use for drawing spot outlines.
         *brush*                The brush (or list of brushes) to use for filling spots.
@@ -131,7 +143,13 @@ class ScatterPlotItem(GraphicsObject):
         If a list or array is provided, then the brush for each spot will be set separately.
         Otherwise, the arguments are passed to pg.mkBrush and used as the default brush for
         all spots which do not have a brush explicitly set."""
-    def setSymbol(self, symbol, update: bool = True, dataSet: Incomplete | None = None, mask: Incomplete | None = None) -> None:
+    def setSymbol(
+        self,
+        symbol,
+        update: bool = True,
+        dataSet: Incomplete | None = None,
+        mask: Incomplete | None = None,
+    ) -> None:
         """Set the symbol(s) used to draw each spot.
         If a list or array is provided, then the symbol for each spot will be set separately.
         Otherwise, the argument will be used as the default symbol for
@@ -161,21 +179,37 @@ class ScatterPlotItem(GraphicsObject):
         * any QPainterPath to specify custom symbol shapes.
 
         """
-    def setSize(self, size, update: bool = True, dataSet: Incomplete | None = None, mask: Incomplete | None = None) -> None:
+    def setSize(
+        self,
+        size,
+        update: bool = True,
+        dataSet: Incomplete | None = None,
+        mask: Incomplete | None = None,
+    ) -> None:
         """Set the size(s) used to draw each spot.
         If a list or array is provided, then the size for each spot will be set separately.
         Otherwise, the argument will be used as the default size for
         all spots which do not have a size explicitly set."""
-    def setPointsVisible(self, visible, update: bool = True, dataSet: Incomplete | None = None, mask: Incomplete | None = None) -> None:
+    def setPointsVisible(
+        self,
+        visible,
+        update: bool = True,
+        dataSet: Incomplete | None = None,
+        mask: Incomplete | None = None,
+    ) -> None:
         """Set whether or not each spot is visible.
         If a list or array is provided, then the visibility for each spot will be set separately.
         Otherwise, the argument will be used for all spots."""
-    def setPointData(self, data, dataSet: Incomplete | None = None, mask: Incomplete | None = None) -> None: ...
+    def setPointData(
+        self, data, dataSet: Incomplete | None = None, mask: Incomplete | None = None
+    ) -> None: ...
     def setPxMode(self, mode) -> None: ...
     def updateSpots(self, dataSet: Incomplete | None = None) -> None: ...
     def clear(self) -> None:
         """Remove all spots from the scatter plot"""
-    def dataBounds(self, ax, frac: float = 1.0, orthoRange: Incomplete | None = None): ...
+    def dataBounds(
+        self, ax, frac: float = 1.0, orthoRange: Incomplete | None = None
+    ): ...
     def pixelPadding(self): ...
     def boundingRect(self): ...
     def viewTransformChanged(self) -> None: ...

@@ -1,7 +1,9 @@
 from .. import getConfigOption as getConfigOption
 from ..Qt import QtCore as QtCore, QtGui as QtGui, QtWidgets as QtWidgets
 from ..SignalProxy import SignalProxy as SignalProxy
-from ..graphicsItems.GradientEditorItem import addGradientListToDocstring as addGradientListToDocstring
+from ..graphicsItems.GradientEditorItem import (
+    addGradientListToDocstring as addGradientListToDocstring,
+)
 from ..graphicsItems.ImageItem import ImageItem as ImageItem
 from ..graphicsItems.InfiniteLine import InfiniteLine as InfiniteLine
 from ..graphicsItems.LinearRegionItem import LinearRegionItem as LinearRegionItem
@@ -12,7 +14,6 @@ from _typeshed import Incomplete
 from . import ImageViewTemplate_generic as ui_template
 import numpy as np
 from numpy import NDArray
-
 
 translate: Incomplete
 
@@ -50,6 +51,7 @@ class ImageView(QtWidgets.QWidget):
       * space begins playing frames. If time values (in seconds) are given
         for each frame, then playback is in realtime.
     """
+
     sigTimeChanged: Incomplete
     sigProcessingChanged: Incomplete
     levelMin: Incomplete
@@ -79,7 +81,18 @@ class ImageView(QtWidgets.QWidget):
     normRgn: Incomplete
     normProxy: Incomplete
     noRepeatKeys: Incomplete
-    def __init__(self, parent: Incomplete | None = None, name: str = 'ImageView', view: Incomplete | None = None, imageItem: Incomplete | None = None, levelMode: str = 'mono', discreteTimeLine: bool = False, roi: Incomplete | None = None, normRoi: Incomplete | None = None, *args) -> None:
+    def __init__(
+        self,
+        parent: Incomplete | None = None,
+        name: str = "ImageView",
+        view: Incomplete | None = None,
+        imageItem: Incomplete | None = None,
+        levelMode: str = "mono",
+        discreteTimeLine: bool = False,
+        roi: Incomplete | None = None,
+        normRoi: Incomplete | None = None,
+        *args,
+    ) -> None:
         """
         By default, this class creates an :class:`ImageItem <pyqtgraph.ImageItem>` to display image data
         and a :class:`ViewBox <pyqtgraph.ViewBox>` to contain the ImageItem.
@@ -112,7 +125,23 @@ class ImageView(QtWidgets.QWidget):
             If specified, this object is used as ROI for the normalization feature. Must be an instance of ROI.
         """
     tVals: Incomplete
-    def setImage(self, img: NDArray[np.uint8] | NDArray[np.uint16] | NDArray[np.float64] | NDArray[np.int64], autoRange: bool = True, autoLevels: bool = True, levels: tuple[float, float] | None = None, axes: dict[str,int] | None = None, xvals: NDArray[np.int64] | None = None, pos: tuple[float, float] | list[tuple[float]] | None = None, scale: tuple[float, float] | list[tuple[float]] | None = None, transform: QtGui.QTransform | None = None, autoHistogramRange: bool = True, levelMode: str | None = None) -> None:
+    def setImage(
+        self,
+        img: np.ndarray[
+            tuple[int, int] | tuple[int, int, int],
+            np.dtype[np.int64 | np.float32 | np.float64 | np.uint8 | np.bool],
+        ],
+        autoRange: bool = True,
+        autoLevels: bool = True,
+        levels: tuple[float, float] | None = None,
+        axes: dict[str, int] | None = None,
+        xvals: NDArray[np.int64] | None = None,
+        pos: tuple[float, float] | list[tuple[float]] | None = None,
+        scale: tuple[float, float] | list[tuple[float]] | None = None,
+        transform: QtGui.QTransform | None = None,
+        autoHistogramRange: bool = True,
+        levelMode: str | None = None,
+    ) -> None:
         """
         Set the image to be displayed in the widget.
 
@@ -185,8 +214,7 @@ class ImageView(QtWidgets.QWidget):
     def autoRange(self) -> None:
         """Auto scale and pan the view around the image such that the image fills the view."""
     def getProcessedImage(self):
-        """Returns the image data after it has been processed by any normalization options in use.
-        """
+        """Returns the image data after it has been processed by any normalization options in use."""
     def close(self) -> None:
         """Closes the widget nicely, making sure to clear the graphics scene and release memory."""
     def keyPressEvent(self, ev) -> None: ...
