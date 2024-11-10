@@ -1,4 +1,5 @@
 from _typeshed import Incomplete
+import numpy as np
 
 __all__ = ['ColorMap']
 
@@ -20,6 +21,31 @@ def listMaps(source: None | str = None) -> list[str]:
     -------
     list of str
         Known color map names.
+    """
+
+def get(name:str, source:str|None=None, skipCache:bool|None=False) -> ColorMap:
+    """
+    .. warning:: Experimental, subject to change.
+
+    Returns a ColorMap object from a local definition or imported from another library.
+    The generated ColorMap objects are cached for fast repeated access.
+
+    Parameters
+    ----------
+    name: str
+        Name of color map. In addition to the included maps, this can also
+        be a path to a file in the local folder. See the files in the
+        ``pyqtgraph/colors/maps/`` folder for examples of the format.
+    source: str, optional
+        If omitted, a locally stored map is returned. Otherwise:
+
+          - 'matplotlib' imports a map defined by Matplotlib.
+          - 'colorcet' imports a map defined by ColorCET.
+
+    skipCache: bool, optional
+        If `skipCache=True`, the internal cache is skipped and a new
+        ColorMap object is generated. This can load an unaltered copy
+        when the previous ColorMap object has been modified.
     """
 
 
@@ -113,7 +139,7 @@ class ColorMap:
                 treated as cyclical if the extracted interval exceeds the 
                 0.0 to 1.0 range.  Possible values between -1.0 to 1.0.
         """
-    def map(self, data, mode=...):
+    def map(self, data: float | list[float] | np.ndarray[tuple[int, ...], np.dtype[np.float32 | np.float64]], mode: str | int| None =...) -> np.ndarray[tuple[int, ...], np.dtype[np.float32]]: # return type is not full
         """
         map(data, mode=ColorMap.BYTE)
 
