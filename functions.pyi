@@ -86,13 +86,16 @@ def mkColor(*args):
      QColor          QColor instance; makes a copy.
     ================ ================================================
     '''
-def mkBrush(*args, **kwds) -> QtGui.QBrush:
+def mkBrush(
+    *args: QtGui.QBrush | None | str | tuple[int, int, int, int] | int | float | tuple[int, int] | QtGui.QColor,
+    **kwds: QtGui.QBrush | None | str | tuple[int, int, int, int] | int | float | tuple[int, int] | QtGui.QColor,
+) -> QtGui.QBrush:
     """
     | Convenience function for constructing Brush.
     | This function always constructs a solid brush and accepts the same arguments as :func:`mkColor() <pyqtgraph.mkColor>`
     | Calling mkBrush(None) returns an invisible brush.
     """
-def mkPen(*args: str|float|QtCore.Qt.PenStyle, **kargs: str|float|QtCore.Qt.PenStyle) -> QtGui.QPen:
+def mkPen(*args: str|float|QtCore.Qt.PenStyle|None, **kargs: str|float|QtCore.Qt.PenStyle) -> QtGui.QPen:
     '''
     Convenience function for constructing QPen.
 
