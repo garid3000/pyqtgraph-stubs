@@ -2,6 +2,27 @@ from _typeshed import Incomplete
 
 __all__ = ['ColorMap']
 
+def listMaps(source: None | str = None) -> list[str]:
+    """
+    .. warning:: Experimental, subject to change.
+
+    List available color maps.
+
+    Parameters
+    ----------
+    source: str, optional
+        Color map source. If omitted, locally stored maps are listed. Otherwise:
+
+          - 'matplotlib' lists maps that can be imported from Matplotlib
+          - 'colorcet' lists maps that can be imported from ColorCET
+
+    Returns
+    -------
+    list of str
+        Known color map names.
+    """
+
+
 class ColorMap:
     """
     ColorMap(pos, color, mapping=ColorMap.CLIP)

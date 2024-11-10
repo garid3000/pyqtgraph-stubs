@@ -52,7 +52,7 @@ class GLGraphicsItem(QtCore.QObject):
     def childItems(self):
         """Return a list of this item's children in the scenegraph hierarchy."""
     def view(self): ...
-    def setDepthValue(self, value) -> None:
+    def setDepthValue(self, value: float) -> None:  # might be wrong
         """
         Sets the depth value of this item. Default is 0.
         This controls the order in which items are drawn--those with a greater depth value will be drawn later.
@@ -60,7 +60,7 @@ class GLGraphicsItem(QtCore.QObject):
         (This is analogous to QGraphicsItem.zValue)
         The depthValue does NOT affect the position of the item or the values it imparts to the GL depth buffer.
         """
-    def depthValue(self):
+    def depthValue(self) -> float:
         """Return the depth value of this item. See setDepthValue for more information."""
     def setTransform(self, tr) -> None:
         """Set the local transform for this object.
@@ -93,13 +93,13 @@ class GLGraphicsItem(QtCore.QObject):
         Translate the object by (*dx*, *dy*, *dz*) in its parent's coordinate system.
         If *local* is True, then translation takes place in local coordinates.
         """
-    def rotate(self, angle, x, y, z, local: bool = False) -> None:
+    def rotate(self, angle:float, x:float, y:float, z:float, local: bool = False) -> None:
         """
         Rotate the object around the axis specified by (x,y,z).
         *angle* is in degrees.
         
         """
-    def scale(self, x, y, z, local: bool = True) -> None:
+    def scale(self, x:float, y:float, z:float, local: bool = True) -> None:
         """
         Scale the object by (*dx*, *dy*, *dz*) in its local coordinate system.
         If *local* is False, then scale takes place in the parent's coordinates.
@@ -110,7 +110,7 @@ class GLGraphicsItem(QtCore.QObject):
     def show(self) -> None:
         """Make this item visible if it was previously hidden.
         This is equivalent to setVisible(True)."""
-    def setVisible(self, vis) -> None:
+    def setVisible(self, vis:bool) -> None:   # might be wrong type
         """Set the visibility of this item."""
     def visible(self):
         """Return True if the item is currently set to be visible.

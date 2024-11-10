@@ -13,7 +13,7 @@ class GLScatterPlotItem(GLGraphicsItem):
     pxMode: bool
     shader: Incomplete
     def __init__(self, parentItem: Incomplete | None = None, **kwds) -> None: ...
-    def setData(self, **kwds: np.ndarray[tuple[int,int], np.dtype[np.uint8| np.float64]] | list[float| int] | bool | float) -> None:
+    def setData(self, **kwds: np.ndarray[tuple[int,int], np.dtype[np.float32]] | list[float| int] | bool | float) -> None:
         """
         Update the data displayed by this item. All arguments are optional; 
         for example it is allowed to update spot positions while leaving 
