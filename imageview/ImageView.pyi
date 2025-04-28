@@ -129,7 +129,7 @@ class ImageView(QtWidgets.QWidget):
         self,
         img: np.ndarray[
             tuple[int, int] | tuple[int, int, int],
-            np.dtype[np.int64 | np.float32 | np.float64 | np.uint8 | np.bool],
+            np.dtype[np.int64 | np.float32 | np.float64 | np.uint8 | np.uint16 | np.bool],
         ],
         autoRange: bool = True,
         autoLevels: bool = True,
