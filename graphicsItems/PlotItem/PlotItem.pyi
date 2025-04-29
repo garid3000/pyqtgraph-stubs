@@ -194,7 +194,7 @@ class PlotItem(GraphicsWidget):
     def clearPlots(self) -> None: ...
     #def plot(self, *args: str|bool|int|None, **kargs: str|bool|int|None|tuple[int, int, int]|QtGui.QPen) -> PlotDataItem:
     #def plot(self, *args: list[float] | NDArray[np.int64] | NDArray[np.uint8]| NDArray[np.float64], **kargs: list[float] | NDArray[np.int64] | NDArray[np.uint8]| NDArray[np.float64]) -> PlotDataItem:
-    def plot(self, *args: list[float] | NDArray[np.int64] | NDArray[np.uint8]| NDArray[np.float64], **kargs: str|bool|int|None|tuple[int, int, int]|QtGui.QPen) -> PlotDataItem:
+    def plot(self, *args: list[float] | NDArray[np.int64] | NDArray[np.uint8]| NDArray[np.float64], **kargs: str|bool|int|None|tuple[int, int, int]|QtGui.QPen| NDArray[np.float32 | np.float64]) -> PlotDataItem:
         """
         Add and return a new plot.
         See :func:`PlotDataItem.__init__ <pyqtgraph.PlotDataItem.__init__>` for data arguments
